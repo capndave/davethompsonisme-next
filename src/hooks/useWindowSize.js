@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import debounce from './debounce'
 
-function useWindowSize () {
+export function useWindowSize () {
   const [windowSize, setWindowSize] = useState({
     innerHeight: 0,
     innerWidth: 0
@@ -38,5 +38,3 @@ function useWindowSize () {
 
   return { windowSize }
 }
-
-export default useWindowSize
