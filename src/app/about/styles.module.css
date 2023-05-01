@@ -1,0 +1,12 @@
+.about {
+  text-align: left;
+  max-width: 700px;
+}
+
+.about p {
+  margin: 1rem 0 0 0;
+}
+
+.about p:first-of-type {
+  /* margin: 0; */
+}

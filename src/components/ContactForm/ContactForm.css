@@ -1,0 +1,26 @@
+#contact-form {
+	display: inline-block;
+	min-width: calc(320px - 2rem);
+	margin: 0px !important;
+	padding: 0px;
+	width: 100%;
+}
+
+#contact-form input,
+textarea {
+	border: none;
+	border-radius: 3px;
+	font-family: inherit;
+	font-size: .75rem;
+	padding: 12px;
+	width: calc(100% - 24px);
+}
+
+#contact-form button {
+	float: right;
+}
+
+#contact-form textarea {
+	/*TODO: flex-grow to available space*/
+	height: 200px;
+}
