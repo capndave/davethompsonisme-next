@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { useWindowSize } from '../../../hooks/useWindowSize'
+import { useWindowSize } from '../../../hooks'
 import desktopTitle from '../../../assets/titles/desktopTitle.svg'
 import mobileTitle from '../../../assets/titles/mobileTitle.svg'
 import styles from './styles.module.css'

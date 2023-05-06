@@ -1,0 +1,9 @@
+#contact #icons {
+	margin-bottom: 1rem;
+}
+
+#contact {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
