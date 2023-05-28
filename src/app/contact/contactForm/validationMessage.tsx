@@ -6,7 +6,7 @@ interface ValidationMessageProps {
 
 const ValidationMessage: React.FC<ValidationMessageProps> = ({ message = 'Mandatory Field' }) => {
   return (
-		<span id={styles.validationMessage}>{message ?? 'missing'}</span>
+		<span id={styles['validation-message']}>{message ?? 'missing'}</span>
   )
 }
 

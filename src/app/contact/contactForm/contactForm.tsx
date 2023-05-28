@@ -4,85 +4,63 @@ import { useEffect, useState } from 'react'
 import Label from './label'
 import Button from './button'
 import ValidationMessage from './validationMessage'
+import sendEmail from './sendEmail'
+import Validator from './validator'
 import style from './contactForm.module.css'
+import { FieldErrors, FormData } from '@/types'
 
 export const ContactForm = () => {
-  const [messageInfo, setMessageInfo] = useState({
-    email: '',
-    subject: '',
-    message: ''
-  })
+  const [data, setData] = useState(new FormData())
+  const [errors, setErrors] = useState(new FieldErrors())
 
-  const [fieldError, setFieldError] = useState({
-    email: false,
-    subject: false,
-    message: false
-  })
-
-  useEffect(() => {
-    console.log({ fieldError })
-  }, [fieldError])
-
-  // TODO: review whether this actually submits or not
   function onSubmit(event: React.SyntheticEvent) {
     event.preventDefault()
     const isValid = validate()
-    if (isValid) console.log('submitting', messageInfo)
+    if (isValid) {
+      console.log('submitting', data)
+      sendEmail(data)
+    }
   }
 
   function onChange(event: React.FormEvent<HTMLInputElement> | React.FormEvent<HTMLTextAreaElement>) {
     const {name, value} = event.target as HTMLInputElement
-    setMessageInfo({ ...messageInfo, [name]: value })
+    setData({ ...data, [name]: value })
   }
 
-  // TODO: Review validation. Do we even need it?
-  function validate() {
-    let isValid = true
-    const newFieldError = {}
-
-    for (const [key, value] of Object.entries(messageInfo)) {
-      if (value.length === 0) {
-        newFieldError[key] = true
-        isValid = false
-      } else {
-        newFieldError[key] = false
-      }
-    }
-
-    setFieldError(newFieldError)
-    return isValid
+  function validate(): boolean {
+    const validator = new Validator()
+    validator.validate(data)
+    setErrors(validator.errors)
+    return validator.isValid()
   }
 
   return (
     <form
-      id={style.contactForm}
+      id={style['contact-form']}
       onSubmit={onSubmit}
     >
       <Label text='Email Address'>
-        {/* <span className='font-size-point-75-rem'>Email address</span> */}
-        {fieldError.email && <ValidationMessage />}
+        {errors.email && <ValidationMessage message='Please enter a valid email address' />}
         <input
           name='email'
           onChange={onChange}
-          value={messageInfo.email}
+          value={data.email}
         />
       </Label>
       <Label text='Subject'>
-        {/* <span className='font-size-point-75-rem'>Subject</span> */}
-        {fieldError.subject && <ValidationMessage />}
+        {errors.subject && <ValidationMessage message='Please enter a subject' />}
         <input
           name='subject'
           onChange={onChange}
-          value={messageInfo.subject}
+          value={data.subject}
         />
       </Label>
         <Label text='Message'>
-        {/* <span className='font-size-point-75-rem'>Message</span> */}
-        {fieldError.message && <ValidationMessage />}
+        {errors.message && <ValidationMessage message='Please enter a message' />}
         <textarea
           name='message'
           onChange={onChange}
-          value={messageInfo.message}
+          value={data.message}
         />
       </Label>
       <Button name='submit' text='Submit' />

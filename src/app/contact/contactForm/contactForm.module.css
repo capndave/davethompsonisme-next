@@ -8,10 +8,13 @@
 
 #contact-form input,
 #contact-form textarea {
+	background-color: white;
 	border: none;
 	border-radius: 3px;
 	font-family: inherit;
 	font-size: .75rem;
+	margin-bottom: 1rem;
+	margin-top: 6px;
 	padding: 12px;
 	width: calc(100% - 24px);
 }
@@ -22,5 +25,5 @@
 
 #contact-form textarea {
 	/*TODO: flex-grow to available space*/
-	height: 200px;
+	height: 150px;
 }

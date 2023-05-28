@@ -1,6 +1,10 @@
 #icons {
 	display: flex;
+	color: var(--color-primary);
+	line-height: 14px;
 	justify-content: space-evenly;
-	margin-top: 0;
 	width: 100%;
+}
+
+#icons a:hover {
 }
